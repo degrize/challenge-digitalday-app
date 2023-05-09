@@ -1,0 +1,95 @@
+entity Article {
+	nom String required,
+    prixVente Double required,
+    qte Integer required,
+    dateExpiration LocalDate required,
+    dateFabrication LocalDate required,
+    codeBar String,
+    prixAchat Double required,
+    seuilSecurite Double,
+    seuilMinimal Double,
+    seuilAlerte Double
+    emplacement String,
+    description String,
+    photoPrincipale ImageBlob,
+    photoSecondaire ImageBlob,
+    photoTertaire ImageBlob,
+}
+
+entity Client {
+	nom String required,
+    prenom String required,
+    contact String,
+    adresse String,
+    sexe Sexe,
+} 
+
+entity Vente {
+	dateVente Instant,
+    remiseRabais Double,
+    montantRecu Double,
+    aCredit Boolean
+}
+
+entity CategorieArticle {
+	nom String required,
+    description String
+}
+
+entity Commander {
+	dateCommande Instant,
+    montantAchat Double,
+    aCredit Boolean
+}
+
+entity Fournisseur {
+	nom String required,
+    prenom String required,
+    contact String,
+    
+}
+
+entity Ville {
+	nom String required
+}
+
+entity Quartier {
+	nom String required
+}
+
+
+enum Sexe {
+	F, M
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToMany {
+	Quartier{ville(nom)} to Ville{quartier}
+}
+
+relationship ManyToMany {
+	Article{categorieArticle(nom)} to CategorieArticle{article}
+}
+
+relationship ManyToOne {
+	Vente{client(nom)} to Client,
+    Vente{article(nom)} to Article,
+    Commander{fournisseur} to Fournisseur,
+    Commander{article} to Article,
+    Client{quartier(nom)} to Quartier,
+    Fournisseur{quartier(nom)} to Quartier,
+}
+
+// Set pagination options
+paginate all with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
