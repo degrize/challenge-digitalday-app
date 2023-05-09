@@ -7,6 +7,14 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entités",
+        "article": "Article",
+        "client": "Client",
+        "vente": "Vente",
+        "categorieArticle": "Categorie Article",
+        "commander": "Commander",
+        "fournisseur": "Fournisseur",
+        "ville": "Ville",
+        "quartier": "Quartier",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20230509104617",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "categorie_article",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CategorieArticle",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "categorieArticle",
+      "ownerSide": false,
+      "relationshipName": "article",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

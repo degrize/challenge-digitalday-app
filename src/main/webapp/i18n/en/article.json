@@ -1,0 +1,39 @@
+{
+  "digitaldayApp": {
+    "article": {
+      "home": {
+        "title": "Articles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Article",
+        "createOrEditLabel": "Create or edit a Article",
+        "notFound": "No Articles found"
+      },
+      "created": "A new Article is created with identifier {{ param }}",
+      "updated": "A Article is updated with identifier {{ param }}",
+      "deleted": "A Article is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Article {{ id }}?"
+      },
+      "detail": {
+        "title": "Article"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prixVente": "Prix Vente",
+      "qte": "Qte",
+      "dateExpiration": "Date Expiration",
+      "dateFabrication": "Date Fabrication",
+      "codeBar": "Code Bar",
+      "prixAchat": "Prix Achat",
+      "seuilSecurite": "Seuil Securite",
+      "seuilMinimal": "Seuil Minimal",
+      "seuilAlerte": "Seuil Alerte",
+      "emplacement": "Emplacement",
+      "description": "Description",
+      "photoPrincipale": "Photo Principale",
+      "photoSecondaire": "Photo Secondaire",
+      "photoTertaire": "Photo Tertaire",
+      "categorieArticle": "Categorie Article"
+    }
+  }
+}

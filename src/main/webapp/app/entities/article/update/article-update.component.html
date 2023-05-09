@@ -1,0 +1,393 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-article-heading" data-cy="ArticleCreateUpdateHeading" jhiTranslate="digitaldayApp.article.home.createOrEditLabel">
+        Créer ou éditer un Article
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.nom" for="field_nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+          <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.prixVente" for="field_prixVente">Prix Vente</label>
+          <input type="number" class="form-control" name="prixVente" id="field_prixVente" data-cy="prixVente" formControlName="prixVente" />
+          <div *ngIf="editForm.get('prixVente')!.invalid && (editForm.get('prixVente')!.dirty || editForm.get('prixVente')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prixVente')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('prixVente')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.qte" for="field_qte">Qte</label>
+          <input type="number" class="form-control" name="qte" id="field_qte" data-cy="qte" formControlName="qte" />
+          <div *ngIf="editForm.get('qte')!.invalid && (editForm.get('qte')!.dirty || editForm.get('qte')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('qte')?.errors?.required" jhiTranslate="entity.validation.required">
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('qte')?.errors?.number" jhiTranslate="entity.validation.number">
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.dateExpiration" for="field_dateExpiration">Date Expiration</label>
+          <div class="input-group">
+            <input
+              id="field_dateExpiration"
+              data-cy="dateExpiration"
+              type="text"
+              class="form-control"
+              name="dateExpiration"
+              ngbDatepicker
+              #dateExpirationDp="ngbDatepicker"
+              formControlName="dateExpiration"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateExpirationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dateExpiration')!.invalid && (editForm.get('dateExpiration')!.dirty || editForm.get('dateExpiration')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateExpiration')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.dateFabrication" for="field_dateFabrication"
+            >Date Fabrication</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateFabrication"
+              data-cy="dateFabrication"
+              type="text"
+              class="form-control"
+              name="dateFabrication"
+              ngbDatepicker
+              #dateFabricationDp="ngbDatepicker"
+              formControlName="dateFabrication"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFabricationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          <div
+            *ngIf="
+              editForm.get('dateFabrication')!.invalid &&
+              (editForm.get('dateFabrication')!.dirty || editForm.get('dateFabrication')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateFabrication')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.codeBar" for="field_codeBar">Code Bar</label>
+          <input type="text" class="form-control" name="codeBar" id="field_codeBar" data-cy="codeBar" formControlName="codeBar" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.prixAchat" for="field_prixAchat">Prix Achat</label>
+          <input type="number" class="form-control" name="prixAchat" id="field_prixAchat" data-cy="prixAchat" formControlName="prixAchat" />
+          <div *ngIf="editForm.get('prixAchat')!.invalid && (editForm.get('prixAchat')!.dirty || editForm.get('prixAchat')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('prixAchat')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('prixAchat')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Ce champ doit être un nombre.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.seuilSecurite" for="field_seuilSecurite">Seuil Securite</label>
+          <input
+            type="number"
+            class="form-control"
+            name="seuilSecurite"
+            id="field_seuilSecurite"
+            data-cy="seuilSecurite"
+            formControlName="seuilSecurite"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.seuilMinimal" for="field_seuilMinimal">Seuil Minimal</label>
+          <input
+            type="number"
+            class="form-control"
+            name="seuilMinimal"
+            id="field_seuilMinimal"
+            data-cy="seuilMinimal"
+            formControlName="seuilMinimal"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.seuilAlerte" for="field_seuilAlerte">Seuil Alerte</label>
+          <input
+            type="number"
+            class="form-control"
+            name="seuilAlerte"
+            id="field_seuilAlerte"
+            data-cy="seuilAlerte"
+            formControlName="seuilAlerte"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.emplacement" for="field_emplacement">Emplacement</label>
+          <input
+            type="text"
+            class="form-control"
+            name="emplacement"
+            id="field_emplacement"
+            data-cy="emplacement"
+            formControlName="emplacement"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.photoPrincipale" for="field_photoPrincipale"
+            >Photo Principale</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('photoPrincipaleContentType')!.value + ';base64,' + editForm.get('photoPrincipale')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('photoPrincipale')!.value"
+              alt="article image"
+            />
+            <div *ngIf="editForm.get('photoPrincipale')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('photoPrincipaleContentType')!.value }}, {{ byteSize(editForm.get('photoPrincipale')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('photoPrincipale', 'photoPrincipaleContentType', 'file_photoPrincipale')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_photoPrincipale"
+              data-cy="photoPrincipale"
+              (change)="setFileData($event, 'photoPrincipale', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoPrincipale"
+            id="field_photoPrincipale"
+            data-cy="photoPrincipale"
+            formControlName="photoPrincipale"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoPrincipaleContentType"
+            id="field_photoPrincipaleContentType"
+            formControlName="photoPrincipaleContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.photoSecondaire" for="field_photoSecondaire"
+            >Photo Secondaire</label
+          >
+          <div>
+            <img
+              [src]="'data:' + editForm.get('photoSecondaireContentType')!.value + ';base64,' + editForm.get('photoSecondaire')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('photoSecondaire')!.value"
+              alt="article image"
+            />
+            <div *ngIf="editForm.get('photoSecondaire')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('photoSecondaireContentType')!.value }}, {{ byteSize(editForm.get('photoSecondaire')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('photoSecondaire', 'photoSecondaireContentType', 'file_photoSecondaire')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_photoSecondaire"
+              data-cy="photoSecondaire"
+              (change)="setFileData($event, 'photoSecondaire', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoSecondaire"
+            id="field_photoSecondaire"
+            data-cy="photoSecondaire"
+            formControlName="photoSecondaire"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoSecondaireContentType"
+            id="field_photoSecondaireContentType"
+            formControlName="photoSecondaireContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="digitaldayApp.article.photoTertaire" for="field_photoTertaire">Photo Tertaire</label>
+          <div>
+            <img
+              [src]="'data:' + editForm.get('photoTertaireContentType')!.value + ';base64,' + editForm.get('photoTertaire')!.value"
+              style="max-height: 100px"
+              *ngIf="editForm.get('photoTertaire')!.value"
+              alt="article image"
+            />
+            <div *ngIf="editForm.get('photoTertaire')!.value" class="form-text text-danger clearfix">
+              <span class="pull-start"
+                >{{ editForm.get('photoTertaireContentType')!.value }}, {{ byteSize(editForm.get('photoTertaire')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('photoTertaire', 'photoTertaireContentType', 'file_photoTertaire')"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_photoTertaire"
+              data-cy="photoTertaire"
+              (change)="setFileData($event, 'photoTertaire', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoTertaire"
+            id="field_photoTertaire"
+            data-cy="photoTertaire"
+            formControlName="photoTertaire"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoTertaireContentType"
+            id="field_photoTertaireContentType"
+            formControlName="photoTertaireContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="digitaldayApp.article.categorieArticle" for="field_categorieArticles">Categorie Article</label>
+          <select
+            class="form-control"
+            id="field_categorieArticles"
+            data-cy="categorieArticle"
+            multiple
+            name="categorieArticles"
+            formControlName="categorieArticles"
+            [compareWith]="compareCategorieArticle"
+          >
+            <option [ngValue]="categorieArticleOption" *ngFor="let categorieArticleOption of categorieArticlesSharedCollection">
+              {{ categorieArticleOption.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

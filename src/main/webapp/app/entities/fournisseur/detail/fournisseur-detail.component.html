@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fournisseur">
+      <h2 data-cy="fournisseurDetailsHeading"><span jhiTranslate="digitaldayApp.fournisseur.detail.title">Fournisseur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fournisseur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.fournisseur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ fournisseur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.fournisseur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ fournisseur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.fournisseur.contact">Contact</span></dt>
+        <dd>
+          <span>{{ fournisseur.contact }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.fournisseur.quartier">Quartier</span></dt>
+        <dd>
+          <div *ngIf="fournisseur.quartier">
+            <a [routerLink]="['/quartier', fournisseur.quartier.id, 'view']">{{ fournisseur.quartier.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fournisseur', fournisseur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

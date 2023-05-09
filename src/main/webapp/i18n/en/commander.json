@@ -1,0 +1,28 @@
+{
+  "digitaldayApp": {
+    "commander": {
+      "home": {
+        "title": "Commanders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Commander",
+        "createOrEditLabel": "Create or edit a Commander",
+        "notFound": "No Commanders found"
+      },
+      "created": "A new Commander is created with identifier {{ param }}",
+      "updated": "A Commander is updated with identifier {{ param }}",
+      "deleted": "A Commander is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Commander {{ id }}?"
+      },
+      "detail": {
+        "title": "Commander"
+      },
+      "id": "ID",
+      "dateCommande": "Date Commande",
+      "montantAchat": "Montant Achat",
+      "aCredit": "A Credit",
+      "fournisseur": "Fournisseur",
+      "article": "Article"
+    }
+  }
+}

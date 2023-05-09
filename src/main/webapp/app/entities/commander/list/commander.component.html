@@ -1,0 +1,142 @@
+<div>
+  <h2 id="page-heading" data-cy="CommanderHeading">
+    <span jhiTranslate="digitaldayApp.commander.home.title">Commanders</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="digitaldayApp.commander.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-commander"
+        [routerLink]="['/commander/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="digitaldayApp.commander.home.createLabel"> Créer un nouveau Commander </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="commanders?.length === 0">
+    <span jhiTranslate="digitaldayApp.commander.home.notFound">Aucun Commander trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="commanders && commanders.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateCommande">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.commander.dateCommande">Date Commande</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="montantAchat">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.commander.montantAchat">Montant Achat</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="aCredit">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.commander.aCredit">A Credit</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fournisseur.id">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.commander.fournisseur">Fournisseur</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="article.id">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.commander.article">Article</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commander of commanders; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/commander', commander.id, 'view']">{{ commander.id }}</a>
+          </td>
+          <td>{{ commander.dateCommande | formatMediumDatetime }}</td>
+          <td>{{ commander.montantAchat }}</td>
+          <td>{{ commander.aCredit }}</td>
+          <td>
+            <div *ngIf="commander.fournisseur">
+              <a [routerLink]="['/fournisseur', commander.fournisseur.id, 'view']">{{ commander.fournisseur.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="commander.article">
+              <a [routerLink]="['/article', commander.article.id, 'view']">{{ commander.article.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/commander', commander.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/commander', commander.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(commander)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="commanders && commanders.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
