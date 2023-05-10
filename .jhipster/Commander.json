@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20230509104618",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "commander",
+  "fields": [
+    {
+      "fieldName": "dateCommande",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "montantAchat",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "aCredit",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Commander",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fournisseur",
+      "relationshipName": "fournisseur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "article",
+      "relationshipName": "article",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

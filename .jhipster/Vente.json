@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20230509104616",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "vente",
+  "fields": [
+    {
+      "fieldName": "dateVente",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "remiseRabais",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "montantRecu",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "aCredit",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Vente",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "client",
+      "relationshipName": "client",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "article",
+      "relationshipName": "article",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

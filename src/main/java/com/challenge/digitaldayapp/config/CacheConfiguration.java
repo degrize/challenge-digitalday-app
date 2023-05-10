@@ -48,6 +48,18 @@ public class CacheConfiguration {
             createCache(cm, com.challenge.digitaldayapp.domain.User.class.getName());
             createCache(cm, com.challenge.digitaldayapp.domain.Authority.class.getName());
             createCache(cm, com.challenge.digitaldayapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.challenge.digitaldayapp.domain.Article.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Article.class.getName() + ".categorieArticles");
+            createCache(cm, com.challenge.digitaldayapp.domain.Client.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Vente.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.CategorieArticle.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.CategorieArticle.class.getName() + ".articles");
+            createCache(cm, com.challenge.digitaldayapp.domain.Commander.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Fournisseur.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Ville.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Ville.class.getName() + ".quartiers");
+            createCache(cm, com.challenge.digitaldayapp.domain.Quartier.class.getName());
+            createCache(cm, com.challenge.digitaldayapp.domain.Quartier.class.getName() + ".villes");
             // jhipster-needle-ehcache-add-entry
         };
     }

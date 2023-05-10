@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="article">
+      <h2 data-cy="articleDetailsHeading"><span jhiTranslate="digitaldayApp.article.detail.title">Article</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ article.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.nom">Nom</span></dt>
+        <dd>
+          <span>{{ article.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.prixVente">Prix Vente</span></dt>
+        <dd>
+          <span>{{ article.prixVente }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.qte">Qte</span></dt>
+        <dd>
+          <span>{{ article.qte }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.dateExpiration">Date Expiration</span></dt>
+        <dd>
+          <span>{{ article.dateExpiration | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.dateFabrication">Date Fabrication</span></dt>
+        <dd>
+          <span>{{ article.dateFabrication | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.codeBar">Code Bar</span></dt>
+        <dd>
+          <span>{{ article.codeBar }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.prixAchat">Prix Achat</span></dt>
+        <dd>
+          <span>{{ article.prixAchat }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.seuilSecurite">Seuil Securite</span></dt>
+        <dd>
+          <span>{{ article.seuilSecurite }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.seuilMinimal">Seuil Minimal</span></dt>
+        <dd>
+          <span>{{ article.seuilMinimal }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.seuilAlerte">Seuil Alerte</span></dt>
+        <dd>
+          <span>{{ article.seuilAlerte }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.emplacement">Emplacement</span></dt>
+        <dd>
+          <span>{{ article.emplacement }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.description">Description</span></dt>
+        <dd>
+          <span>{{ article.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.photoPrincipale">Photo Principale</span></dt>
+        <dd>
+          <div *ngIf="article.photoPrincipale">
+            <a (click)="openFile(article.photoPrincipale, article.photoPrincipaleContentType)">
+              <img
+                [src]="'data:' + article.photoPrincipaleContentType + ';base64,' + article.photoPrincipale"
+                style="max-width: 100%"
+                alt="article image"
+              />
+            </a>
+            {{ article.photoPrincipaleContentType }}, {{ byteSize(article.photoPrincipale) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.photoSecondaire">Photo Secondaire</span></dt>
+        <dd>
+          <div *ngIf="article.photoSecondaire">
+            <a (click)="openFile(article.photoSecondaire, article.photoSecondaireContentType)">
+              <img
+                [src]="'data:' + article.photoSecondaireContentType + ';base64,' + article.photoSecondaire"
+                style="max-width: 100%"
+                alt="article image"
+              />
+            </a>
+            {{ article.photoSecondaireContentType }}, {{ byteSize(article.photoSecondaire) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.photoTertaire">Photo Tertaire</span></dt>
+        <dd>
+          <div *ngIf="article.photoTertaire">
+            <a (click)="openFile(article.photoTertaire, article.photoTertaireContentType)">
+              <img
+                [src]="'data:' + article.photoTertaireContentType + ';base64,' + article.photoTertaire"
+                style="max-width: 100%"
+                alt="article image"
+              />
+            </a>
+            {{ article.photoTertaireContentType }}, {{ byteSize(article.photoTertaire) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="digitaldayApp.article.categorieArticle">Categorie Article</span></dt>
+        <dd>
+          <span *ngFor="let categorieArticle of article.categorieArticles; let last = last">
+            <a [routerLink]="['/categorie-article', categorieArticle.id, 'view']">{{ categorieArticle.nom }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+      </button>
+
+      <button type="button" [routerLink]="['/article', article.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+      </button>
+    </div>
+  </div>
+</div>

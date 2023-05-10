@@ -1,0 +1,94 @@
+{
+  "applications": "*",
+  "changelogDate": "20230509104614",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "article",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prixVente",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "qte",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateExpiration",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateFabrication",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeBar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prixAchat",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "seuilSecurite",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "seuilMinimal",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "seuilAlerte",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "emplacement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photoPrincipale",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "photoSecondaire",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "photoTertaire",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Article",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "categorieArticle",
+      "otherEntityRelationshipName": "article",
+      "ownerSide": true,
+      "relationshipName": "categorieArticle",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

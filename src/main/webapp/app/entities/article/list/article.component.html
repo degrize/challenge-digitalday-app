@@ -1,0 +1,231 @@
+<div>
+  <h2 id="page-heading" data-cy="ArticleHeading">
+    <span jhiTranslate="digitaldayApp.article.home.title">Articles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="digitaldayApp.article.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-article"
+        [routerLink]="['/article/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="digitaldayApp.article.home.createLabel"> Créer un nouveau Article </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="articles?.length === 0">
+    <span jhiTranslate="digitaldayApp.article.home.notFound">Aucun Article trouvé</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="articles && articles.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nom">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.nom">Nom</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prixVente">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.prixVente">Prix Vente</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qte">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.qte">Qte</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateExpiration">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.dateExpiration">Date Expiration</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateFabrication">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.dateFabrication">Date Fabrication</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codeBar">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.codeBar">Code Bar</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="prixAchat">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.prixAchat">Prix Achat</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="seuilSecurite">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.seuilSecurite">Seuil Securite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="seuilMinimal">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.seuilMinimal">Seuil Minimal</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="seuilAlerte">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.seuilAlerte">Seuil Alerte</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="emplacement">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.emplacement">Emplacement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photoPrincipale">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.photoPrincipale">Photo Principale</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photoSecondaire">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.photoSecondaire">Photo Secondaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photoTertaire">
+            <div class="d-flex">
+              <span jhiTranslate="digitaldayApp.article.photoTertaire">Photo Tertaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let article of articles; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>
+          </td>
+          <td>{{ article.nom }}</td>
+          <td>{{ article.prixVente }}</td>
+          <td>{{ article.qte }}</td>
+          <td>{{ article.dateExpiration | formatMediumDate }}</td>
+          <td>{{ article.dateFabrication | formatMediumDate }}</td>
+          <td>{{ article.codeBar }}</td>
+          <td>{{ article.prixAchat }}</td>
+          <td>{{ article.seuilSecurite }}</td>
+          <td>{{ article.seuilMinimal }}</td>
+          <td>{{ article.seuilAlerte }}</td>
+          <td>{{ article.emplacement }}</td>
+          <td>{{ article.description }}</td>
+          <td>
+            <a *ngIf="article.photoPrincipale" (click)="openFile(article.photoPrincipale, article.photoPrincipaleContentType)">
+              <img
+                [src]="'data:' + article.photoPrincipaleContentType + ';base64,' + article.photoPrincipale"
+                style="max-height: 30px"
+                alt="article image"
+              />
+            </a>
+            <span *ngIf="article.photoPrincipale">{{ article.photoPrincipaleContentType }}, {{ byteSize(article.photoPrincipale) }}</span>
+          </td>
+          <td>
+            <a *ngIf="article.photoSecondaire" (click)="openFile(article.photoSecondaire, article.photoSecondaireContentType)">
+              <img
+                [src]="'data:' + article.photoSecondaireContentType + ';base64,' + article.photoSecondaire"
+                style="max-height: 30px"
+                alt="article image"
+              />
+            </a>
+            <span *ngIf="article.photoSecondaire">{{ article.photoSecondaireContentType }}, {{ byteSize(article.photoSecondaire) }}</span>
+          </td>
+          <td>
+            <a *ngIf="article.photoTertaire" (click)="openFile(article.photoTertaire, article.photoTertaireContentType)">
+              <img
+                [src]="'data:' + article.photoTertaireContentType + ';base64,' + article.photoTertaire"
+                style="max-height: 30px"
+                alt="article image"
+              />
+            </a>
+            <span *ngIf="article.photoTertaire">{{ article.photoTertaireContentType }}, {{ byteSize(article.photoTertaire) }}</span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/article', article.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+              </button>
+
+              <button type="submit" (click)="delete(article)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="articles && articles.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
