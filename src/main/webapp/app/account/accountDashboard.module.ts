@@ -5,19 +5,16 @@ import { SharedModule } from 'app/shared/shared.module';
 import { PasswordStrengthBarComponent } from './password/password-strength-bar/password-strength-bar.component';
 import { RegisterComponent } from './register/register.component';
 import { ActivateComponent } from './activate/activate.component';
+import { PasswordComponent } from './password/password.component';
 import { PasswordResetInitComponent } from './password-reset/init/password-reset-init.component';
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
+import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
+import { AccountModule } from './account.module';
+import { accountDashoardState } from './accountDashoard.route';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(accountState)],
-  declarations: [
-    ActivateComponent,
-    RegisterComponent,
-    PasswordStrengthBarComponent,
-    PasswordResetInitComponent,
-    PasswordResetFinishComponent,
-  ],
-  exports: [PasswordStrengthBarComponent],
+  imports: [SharedModule, RouterModule.forChild(accountDashoardState), AccountModule],
+  declarations: [PasswordComponent, SettingsComponent],
 })
-export class AccountModule {}
+export class AccountDashboardModule {}

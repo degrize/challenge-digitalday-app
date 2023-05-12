@@ -7,31 +7,34 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { FenStartLayoutComponent } from './layouts/fen-start-layout/fen-start-layout.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot(
       [
         {
-          path: 'admin',
-          data: {
-            authorities: [Authority.ADMIN],
-          },
-          canActivate: [UserRouteAccessService],
-          loadChildren: () => import('./admin/admin-routing.module').then(m => m.AdminRoutingModule),
-        },
-        {
-          path: 'account',
-          loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-        },
-        {
-          path: 'login',
-          loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
+          path: '',
+          component: FenStartLayoutComponent,
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('./layouts/fen-start-layout/fen-start-layout.module').then(m => m.FenStartLayoutModule),
+            },
+          ],
         },
         {
           path: '',
-          loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
+          component: AdminLayoutComponent,
+          children: [
+            {
+              path: '',
+              loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
+            },
+          ],
         },
+
         navbarRoute,
         ...errorRoute,
       ],
