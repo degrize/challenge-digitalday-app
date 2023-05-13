@@ -19,6 +19,7 @@ public class VenteDTO implements Serializable {
     private Double montantRecu;
 
     private Boolean aCredit;
+    private Integer qte;
 
     private ClientDTO client;
 
@@ -62,6 +63,14 @@ public class VenteDTO implements Serializable {
 
     public void setaCredit(Boolean aCredit) {
         this.aCredit = aCredit;
+    }
+
+    public Integer getQte() {
+        return qte;
+    }
+
+    public void setQte(Integer qte) {
+        this.qte = qte;
     }
 
     public ClientDTO getClient() {
@@ -110,6 +119,7 @@ public class VenteDTO implements Serializable {
             ", remiseRabais=" + getRemiseRabais() +
             ", montantRecu=" + getMontantRecu() +
             ", aCredit='" + getaCredit() + "'" +
+            ", qte='" + getQte() + "'" +
             ", client=" + getClient() +
             ", article=" + getArticle() +
             "}";

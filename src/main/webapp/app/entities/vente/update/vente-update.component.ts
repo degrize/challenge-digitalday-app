@@ -70,6 +70,9 @@ export class VenteUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const vente = this.venteFormService.getVente(this.editForm);
+    if (this.targetArticle) {
+      vente.article = this.targetArticle[0];
+    }
     if (vente.id !== null) {
       this.subscribeToSaveResponse(this.venteService.update(vente));
     } else {

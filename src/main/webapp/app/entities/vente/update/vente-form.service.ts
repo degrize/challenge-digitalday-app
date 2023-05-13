@@ -27,7 +27,7 @@ type VenteFormRawValue = FormValueOf<IVente>;
 
 type NewVenteFormRawValue = FormValueOf<NewVente>;
 
-type VenteFormDefaults = Pick<NewVente, 'id' | 'dateVente' | 'aCredit'>;
+type VenteFormDefaults = Pick<NewVente, 'id' | 'dateVente' | 'aCredit' | 'qte'>;
 
 type VenteFormGroupContent = {
   id: FormControl<VenteFormRawValue['id'] | NewVente['id']>;
@@ -35,6 +35,7 @@ type VenteFormGroupContent = {
   remiseRabais: FormControl<VenteFormRawValue['remiseRabais']>;
   montantRecu: FormControl<VenteFormRawValue['montantRecu']>;
   aCredit: FormControl<VenteFormRawValue['aCredit']>;
+  qte: FormControl<VenteFormRawValue['qte']>;
   client: FormControl<VenteFormRawValue['client']>;
   article: FormControl<VenteFormRawValue['article']>;
 };
@@ -61,6 +62,7 @@ export class VenteFormService {
       montantRecu: new FormControl(venteRawValue.montantRecu),
       aCredit: new FormControl(venteRawValue.aCredit),
       client: new FormControl(venteRawValue.client),
+      qte: new FormControl(venteRawValue.qte),
       article: new FormControl(venteRawValue.article),
     });
   }
@@ -86,6 +88,7 @@ export class VenteFormService {
       id: null,
       dateVente: currentTime,
       aCredit: false,
+      qte: 1,
     };
   }
 

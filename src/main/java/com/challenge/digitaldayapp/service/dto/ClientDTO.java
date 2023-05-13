@@ -24,6 +24,7 @@ public class ClientDTO implements Serializable {
     private String adresse;
 
     private Sexe sexe;
+    private Integer fidelite;
 
     private QuartierDTO quartier;
 
@@ -75,6 +76,14 @@ public class ClientDTO implements Serializable {
         this.sexe = sexe;
     }
 
+    public Integer getFidelite() {
+        return fidelite;
+    }
+
+    public void setFidelite(Integer fidelite) {
+        this.fidelite = fidelite;
+    }
+
     public QuartierDTO getQuartier() {
         return quartier;
     }
@@ -114,6 +123,7 @@ public class ClientDTO implements Serializable {
             ", contact='" + getContact() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", sexe='" + getSexe() + "'" +
+            ", fidelite='" + getFidelite() + "'" +
             ", quartier=" + getQuartier() +
             "}";
     }

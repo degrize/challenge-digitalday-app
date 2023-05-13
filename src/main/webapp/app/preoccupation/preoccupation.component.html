@@ -1,0 +1,307 @@
+<div class="">
+  <p>
+    Nous sommes une entreprise soucieuse de votre satisfaction et de l'efficacité de nos services. Dans le but d'améliorer notre processus
+    de vente, nous aimerions recueillir votre avis.
+  </p>
+
+  <p-divider align="center">
+    <span class="p-tag px-8 py-3 mb-5">
+      <i class="pi pi-user mr-2"></i>
+      <b>Qui sont mes meilleurs clients ?</b>
+    </span>
+  </p-divider>
+  <br />
+  <div class="card shadow-5">
+    <p-table
+      #dt
+      [columns]="cols"
+      [value]="clientsSharedCollection"
+      selectionMode="multiple"
+      [scrollable]="true"
+      scrollHeight="400px"
+      [resizableColumns]="true"
+      styleClass="p-datatable-gridlines"
+      [(selection)]="selectedClient"
+      [exportHeader]="'customExportHeader'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel()"
+            class="p-button-success mr-2"
+            pTooltip="XLS"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-filter"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            class="p-button-info ml-auto"
+            pTooltip="Selection Only"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br /><br />
+  <p-divider align="center">
+    <span class="p-tag px-8 py-3 mb-5">
+      <i class="pi pi-thumbs-up-fill mr-2"></i>
+      <b>Quels sont les produits qui se vendent le mieux?</b>
+    </span>
+  </p-divider>
+  <br />
+
+  <div class="card shadow-5">
+    <p-table
+      #dt
+      [columns]="colsArticle"
+      [value]="articlesSharedCollection"
+      selectionMode="multiple"
+      [scrollable]="true"
+      scrollHeight="400px"
+      [resizableColumns]="true"
+      styleClass="p-datatable-gridlines"
+      [(selection)]="selectedArticle"
+      [exportHeader]="'customExportHeader'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel()"
+            class="p-button-success mr-2"
+            pTooltip="XLS"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-filter"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            class="p-button-info ml-auto"
+            pTooltip="Selection Only"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br /><br />
+  <p-divider align="center">
+    <span class="p-tag px-8 py-3 mb-5">
+      <i class="pi pi-thumbs-down-fill mr-2"></i>
+      <b>Quels sont les produits en perte de vitesse?</b>
+    </span>
+  </p-divider>
+  <br />
+
+  <div class="card shadow-5">
+    <p-table
+      #dt
+      [columns]="colsArticle"
+      [value]="articlesMoinsVendusSharedCollection"
+      selectionMode="multiple"
+      [scrollable]="true"
+      scrollHeight="400px"
+      [resizableColumns]="true"
+      styleClass="p-datatable-gridlines"
+      [(selection)]="selectedArticleMoinsVendus"
+      [exportHeader]="'customExportHeader'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel()"
+            class="p-button-success mr-2"
+            pTooltip="XLS"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-filter"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            class="p-button-info ml-auto"
+            pTooltip="Selection Only"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <br /><br />
+  <p-divider align="center">
+    <span class="p-tag px-8 py-3 mb-5">
+      <i class="pi pi-thumbs-down-fill mr-2"></i>
+      <b>Quels est le chiffre D'affaires ?</b>
+    </span>
+  </p-divider>
+  <br />
+
+  <div class="card shadow-5">
+    <p-table
+      #dt
+      [columns]="colsArticle"
+      [value]="articlesMoinsVendusSharedCollection"
+      selectionMode="multiple"
+      [scrollable]="true"
+      scrollHeight="400px"
+      [resizableColumns]="true"
+      styleClass="p-datatable-gridlines"
+      [(selection)]="selectedArticleMoinsVendus"
+      [exportHeader]="'customExportHeader'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file-excel"
+            (click)="exportExcel()"
+            class="p-button-success mr-2"
+            pTooltip="XLS"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-filter"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            class="p-button-info ml-auto"
+            pTooltip="Selection Only"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            {{ rowData[col.field] }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <p-messages severity="info">
+      <ng-template pTemplate>
+        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" width="32" />
+        <div class="ml-2">Le Chiffre d'affaire = 30000 FCFA</div>
+      </ng-template>
+    </p-messages>
+  </div>
+</div>

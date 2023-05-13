@@ -14,6 +14,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     TabViewModule,
     DividerModule,
     SelectButtonModule,
+    MessagesModule,
   ],
   declarations: [VenteComponent, VenteDetailComponent, VenteUpdateComponent, VenteDeleteDialogComponent],
 })

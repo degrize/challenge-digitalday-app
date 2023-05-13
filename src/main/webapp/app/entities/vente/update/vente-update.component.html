@@ -41,8 +41,8 @@
               <p-pickList
                 [source]="articlesSharedCollection"
                 [target]="targetArticle"
-                sourceHeader="Available"
-                targetHeader="Selected"
+                sourceHeader="Articles Disponibles"
+                targetHeader="La selection du client"
                 [dragdrop]="true"
                 [responsive]="true"
                 [sourceStyle]="{ height: '30rem' }"
@@ -66,9 +66,21 @@
                       </div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                      <span class="font-bold text-900">Qte : </span>
-                      <p-inputNumber class="p-inputtext-sm w-1rem" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
-                      </p-inputNumber>
+                      <div class="p-inputgroup">
+                        <p-inputNumber
+                          class="p-inputtext-sm w-3rem"
+                          mode="decimal"
+                          inputId="withoutgrouping"
+                          [useGrouping]="false"
+                          name="aCredit"
+                          data-cy="qte"
+                          [min]="1"
+                          [max]="product.qte"
+                          formControlName="qte"
+                        >
+                        </p-inputNumber>
+                        <span class="p-inputgroup-addon">/ {{ product.qte }}</span>
+                      </div>
                     </div>
                   </div>
                 </ng-template>
@@ -105,6 +117,14 @@
               <span class="ml-2">Proceder a la vente</span>
             </ng-template>
             <div class="mx-5">
+              <div>
+                <p-messages severity="success">
+                  <ng-template pTemplate>
+                    <span>MONTANT :</span>
+                    <div class="ml-2">{{ 2000 * 2 }} FCFA</div>
+                  </ng-template>
+                </p-messages>
+              </div>
               <div class="row mb-3">
                 <label class="form-label" jhiTranslate="digitaldayApp.vente.remiseRabais" for="field_remiseRabais">Remise Rabais</label>
                 <input

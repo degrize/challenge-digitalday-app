@@ -1,15 +1,19 @@
-<div class="row">
-  <div class="col-md-9">
-    <h1 class="display-4"><span jhiTranslate="home.title">Bienvenue, Java Hipster !</span> (Digitalday App)</h1>
+<div class="row mt-8">
+  <div class="d-flex flex-column justify-content-center align-items-center mt-8">
+    <jhi-hero-page [account]="account"></jhi-hero-page>
 
-    <p class="lead" jhiTranslate="home.subtitle">Ceci est votre page d'accueil</p>
-
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >Vous êtes connecté en tant que "{{ account.login }}".</span
-        >
+    <div class="py-5 mt-4">
+      <div class="text-900 font-bold text-6xl mb-2 text-center">
+        <div class="text-900 font-bold text-6xl mb-2 text-center">
+          <span class="text-900"> Categories,</span>
+          <span class="text-eva">Projets</span>
+        </div>
       </div>
+      <div class="text-700 text-2xl text-center line-height-3">Découvrez la liste de projets, chantiers en fonction des villes</div>
     </div>
+
+    <section class="col-10">
+      <jhi-home-solutions></jhi-home-solutions>
+    </section>
   </div>
 </div>

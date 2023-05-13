@@ -36,6 +36,9 @@ public class Vente implements Serializable {
     @Column(name = "a_credit")
     private Boolean aCredit;
 
+    @Column(name = "qte")
+    private Integer qte;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "quartier" }, allowSetters = true)
     private Client client;
@@ -111,6 +114,19 @@ public class Vente implements Serializable {
         this.aCredit = aCredit;
     }
 
+    public Integer getQte() {
+        return qte;
+    }
+
+    public Vente qte(Integer qte) {
+        this.setQte(qte);
+        return this;
+    }
+
+    public void setQte(Integer qte) {
+        this.qte = qte;
+    }
+
     public Client getClient() {
         return this.client;
     }
@@ -164,6 +180,7 @@ public class Vente implements Serializable {
             ", dateVente='" + getDateVente() + "'" +
             ", remiseRabais=" + getRemiseRabais() +
             ", montantRecu=" + getMontantRecu() +
+            ", qte='" + getQte() + "'" +
             ", aCredit='" + getaCredit() + "'" +
             "}";
     }

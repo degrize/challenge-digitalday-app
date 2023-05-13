@@ -8,6 +8,7 @@ export interface IClient {
   contact?: string | null;
   adresse?: string | null;
   sexe?: Sexe | null;
+  fidelite?: number | null;
   quartier?: Pick<IQuartier, 'id' | 'nom'> | null;
 }
 

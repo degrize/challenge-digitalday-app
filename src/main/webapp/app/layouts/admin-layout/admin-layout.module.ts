@@ -15,6 +15,13 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 // import { ToastrModule } from 'ngx-toastr';
 import { OrderListModule } from 'primeng/orderlist';
+import { PreoccupationComponent } from '../../preoccupation/preoccupation.component';
+import { DividerModule } from 'primeng/divider';
+import { TableModule } from 'primeng/table';
+import { InplaceModule } from 'primeng/inplace';
+import { RippleModule } from 'primeng/ripple';
+import { DockModule } from 'primeng/dock';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   imports: [
@@ -25,7 +32,13 @@ import { OrderListModule } from 'primeng/orderlist';
     NgbModule,
     ClipboardModule,
     OrderListModule,
+    DividerModule,
+    TableModule,
+    InplaceModule,
+    RippleModule,
+    DockModule,
+    MessagesModule,
   ],
-  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent],
+  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent, PreoccupationComponent],
 })
 export class AdminLayoutModule {}

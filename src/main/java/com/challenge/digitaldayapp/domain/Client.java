@@ -39,6 +39,9 @@ public class Client implements Serializable {
     @Column(name = "adresse")
     private String adresse;
 
+    @Column(name = "fidelite")
+    private Integer fidelite;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "sexe")
     private Sexe sexe;
@@ -127,6 +130,14 @@ public class Client implements Serializable {
         this.sexe = sexe;
     }
 
+    public Integer getFidelite() {
+        return fidelite;
+    }
+
+    public void setFidelite(Integer fidelite) {
+        this.fidelite = fidelite;
+    }
+
     public Quartier getQuartier() {
         return this.quartier;
     }
@@ -169,6 +180,7 @@ public class Client implements Serializable {
             ", contact='" + getContact() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", sexe='" + getSexe() + "'" +
+            ", fidelite='" + getFidelite() + "'" +
             "}";
     }
 }

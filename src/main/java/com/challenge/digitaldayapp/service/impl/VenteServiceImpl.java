@@ -1,6 +1,8 @@
 package com.challenge.digitaldayapp.service.impl;
 
+import com.challenge.digitaldayapp.domain.Client;
 import com.challenge.digitaldayapp.domain.Vente;
+import com.challenge.digitaldayapp.repository.ClientRepository;
 import com.challenge.digitaldayapp.repository.VenteRepository;
 import com.challenge.digitaldayapp.service.VenteService;
 import com.challenge.digitaldayapp.service.dto.VenteDTO;
@@ -8,6 +10,7 @@ import com.challenge.digitaldayapp.service.mapper.VenteMapper;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,9 @@ public class VenteServiceImpl implements VenteService {
 
     private final VenteRepository venteRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
     private final VenteMapper venteMapper;
 
     public VenteServiceImpl(VenteRepository venteRepository, VenteMapper venteMapper) {
@@ -35,7 +41,19 @@ public class VenteServiceImpl implements VenteService {
     public VenteDTO save(VenteDTO venteDTO) {
         log.debug("Request to save Vente : {}", venteDTO);
         Vente vente = venteMapper.toEntity(venteDTO);
+
         vente = venteRepository.save(vente);
+
+        if (vente.getClient().getId() != null) {
+            Client client = clientRepository.getReferenceById(vente.getClient().getId());
+            if (client.getFidelite() == null) {
+                client.setFidelite(0);
+            }
+            client.setFidelite(client.getFidelite() + 1);
+
+            clientRepository.save(client);
+        }
+
         return venteMapper.toDto(vente);
     }
 

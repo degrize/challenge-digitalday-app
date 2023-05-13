@@ -22,8 +22,8 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: '/mes-annonces', title: 'Annonces', icon: 'ni-planet text-blue', class: '' },
-  { path: '/mes-echanges', title: 'Messages', icon: 'ni-planet text-orange', class: '' },
+  { path: '/vente/new', title: 'Nouvelle Vente', icon: 'ni-planet text-blue', class: '' },
+  { path: '/commander/new', title: 'Nouvelle Commande', icon: 'ni-planet text-orange', class: '' },
   { path: '/user-profile', title: 'profile', icon: 'ni-single-02 text-yellow', class: '' },
 ];
 
@@ -63,9 +63,8 @@ export class SidebarComponent implements OnInit {
     private profileService: ProfileService,
     private router: Router,
     location: Location,
-    private element: ElementRef
-  ) // private mandataireDelegateurService: MandataireDelegateurService
-  {
+    private element: ElementRef // private mandataireDelegateurService: MandataireDelegateurService
+  ) {
     if (VERSION) {
       this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
     }
