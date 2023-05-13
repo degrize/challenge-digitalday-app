@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-11">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-vente-heading" data-cy="VenteCreateUpdateHeading" jhiTranslate="digitaldayApp.vente.home.createOrEditLabel">
         Créer ou éditer un Vente
       </h2>
 
-      <div>
+      <div class="flex flex-column gap-4">
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
@@ -13,95 +13,168 @@
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.dateVente" for="field_dateVente">Date Vente</label>
-          <div class="d-flex">
-            <input
-              id="field_dateVente"
-              data-cy="dateVente"
-              type="datetime-local"
-              class="form-control"
-              name="dateVente"
-              formControlName="dateVente"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.remiseRabais" for="field_remiseRabais">Remise Rabais</label>
+        <div class="flex flex-row gap-2 align-items-center">
+          <label htmlFor="field_dateVente" jhiTranslate="digitaldayApp.vente.dateVente">Date Vente</label>
           <input
-            type="number"
-            class="form-control"
-            name="remiseRabais"
-            id="field_remiseRabais"
-            data-cy="remiseRabais"
-            formControlName="remiseRabais"
+            pInputText
+            id="field_dateVente"
+            aria-describedby="username-help"
+            data-cy="dateVente"
+            type="datetime-local"
+            name="dateVente"
+            formControlName="dateVente"
+            placeholder="YYYY-MM-DD HH:mm"
           />
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.montantRecu" for="field_montantRecu">Montant Recu</label>
-          <input
-            type="number"
-            class="form-control"
-            name="montantRecu"
-            id="field_montantRecu"
-            data-cy="montantRecu"
-            formControlName="montantRecu"
-          />
-        </div>
+        <p-divider align="center">
+          <span class="p-tag">Processus de paimemt</span>
+        </p-divider>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.aCredit" for="field_aCredit">A Credit</label>
-          <input type="checkbox" class="form-check" name="aCredit" id="field_aCredit" data-cy="aCredit" formControlName="aCredit" />
-        </div>
+        <p-tabView styleClass="tabview-custom">
+          <p-tabPanel class="p-4">
+            <ng-template pTemplate="header">
+              <i class="pi pi-shopping-cart"></i>
+              <span class="ml-2"> Selectionner les produits a acheter</span>
+            </ng-template>
+            <div class="">
+              <p-pickList
+                [source]="articlesSharedCollection"
+                [target]="targetArticle"
+                sourceHeader="Available"
+                targetHeader="Selected"
+                [dragdrop]="true"
+                [responsive]="true"
+                [sourceStyle]="{ height: '30rem' }"
+                [targetStyle]="{ height: '30rem' }"
+                filterBy="nom"
+                sourceFilterPlaceholder="nom du produit"
+                targetFilterPlaceholder="nom du produit"
+                breakpoint="1400px"
+              >
+                <ng-template let-product pTemplate="item">
+                  <div class="flex flex-wrap p-2 align-items-center gap-3">
+                    <img
+                      class="w-4rem shadow-2 flex-shrink-0 border-round"
+                      [src]="'data:' + product.photoPrincipaleContentType + ';base64,' + product.photoPrincipale"
+                    />
+                    <div class="flex-1 flex flex-column gap-2">
+                      <span class="font-bold">{{ product.nom }}</span>
+                      <div class="flex align-products-center gap-2">
+                        <i class="pi pi-tag text-sm"></i>
+                        <span>{{ product.prixVente }} FCFA</span>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <span class="font-bold text-900">Qte : </span>
+                      <p-inputNumber class="p-inputtext-sm w-1rem" mode="decimal" inputId="withoutgrouping" [useGrouping]="false">
+                      </p-inputNumber>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-pickList>
+            </div>
+          </p-tabPanel>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.client" for="field_client">Client</label>
-          <select
-            class="form-control"
-            id="field_client"
-            data-cy="client"
-            name="client"
-            formControlName="client"
-            [compareWith]="compareClient"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="clientOption" *ngFor="let clientOption of clientsSharedCollection">{{ clientOption.nom }}</option>
-          </select>
-        </div>
+          <p-tabPanel header="Header III">
+            <ng-template pTemplate="header">
+              <i class="pi pi-user"></i>
+              <span class="ml-2">Selectionner le client</span>
+            </ng-template>
+            <div class="mx-5">
+              <div class="row mb-3">
+                <label class="form-label" jhiTranslate="digitaldayApp.vente.client" for="field_client">Client</label>
+                <select
+                  class="form-control"
+                  id="field_client"
+                  data-cy="client"
+                  name="client"
+                  formControlName="client"
+                  [compareWith]="compareClient"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="clientOption" *ngFor="let clientOption of clientsSharedCollection">{{ clientOption.nom }}</option>
+                </select>
+              </div>
+            </div>
+          </p-tabPanel>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="digitaldayApp.vente.article" for="field_article">Article</label>
-          <select
-            class="form-control"
-            id="field_article"
-            data-cy="article"
-            name="article"
-            formControlName="article"
-            [compareWith]="compareArticle"
-          >
-            <option [ngValue]="null"></option>
-            <option [ngValue]="articleOption" *ngFor="let articleOption of articlesSharedCollection">{{ articleOption.nom }}</option>
-          </select>
-        </div>
-      </div>
+          <p-tabPanel header="Header II">
+            <ng-template pTemplate="header">
+              <i class="pi pi-shopping-bag"></i>
+              <span class="ml-2">Proceder a la vente</span>
+            </ng-template>
+            <div class="mx-5">
+              <div class="row mb-3">
+                <label class="form-label" jhiTranslate="digitaldayApp.vente.remiseRabais" for="field_remiseRabais">Remise Rabais</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="remiseRabais"
+                  id="field_remiseRabais"
+                  data-cy="remiseRabais"
+                  formControlName="remiseRabais"
+                />
+              </div>
 
-      <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
-        </button>
+              <div class="row mb-3">
+                <label class="form-label" jhiTranslate="digitaldayApp.vente.montantRecu" for="field_montantRecu">Montant Recu</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  name="montantRecu"
+                  id="field_montantRecu"
+                  data-cy="montantRecu"
+                  formControlName="montantRecu"
+                />
+              </div>
 
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
-        </button>
+              <div class="row mb-3 flex-column gap-1">
+                <label class="form-label" jhiTranslate="digitaldayApp.vente.aCredit" for="field_aCredit">A Credit</label>
+                <p-selectButton
+                  [options]="creditStateOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  name="aCredit"
+                  id="field_aCredit"
+                  data-cy="aCredit"
+                  formControlName="aCredit"
+                ></p-selectButton>
+              </div>
+
+              <!--<div class="row mb-3">
+                <label class="form-label" jhiTranslate="digitaldayApp.vente.article" for="field_article">Article</label>
+                <select
+                  class="form-control"
+                  id="field_article"
+                  data-cy="article"
+                  name="article"
+                  formControlName="article"
+                  [compareWith]="compareArticle"
+                >
+                  <option [ngValue]="null"></option>
+                  <option [ngValue]="articleOption" *ngFor="let articleOption of articlesSharedCollection">{{ articleOption.nom }}</option>
+                </select>
+              </div>-->
+            </div>
+
+            <div class="mt-6">
+              <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+              </button>
+
+              <button
+                type="submit"
+                id="save-entity"
+                data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary"
+              >
+                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+              </button>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
       </div>
     </form>
   </div>

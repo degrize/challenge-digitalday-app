@@ -8,6 +8,7 @@ export interface IVente {
   remiseRabais?: number | null;
   montantRecu?: number | null;
   aCredit?: boolean | null;
+  qte?: [];
   client?: Pick<IClient, 'id' | 'nom'> | null;
   article?: Pick<IArticle, 'id' | 'nom'> | null;
 }

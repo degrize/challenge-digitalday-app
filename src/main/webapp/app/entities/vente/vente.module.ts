@@ -5,9 +5,29 @@ import { VenteDetailComponent } from './detail/vente-detail.component';
 import { VenteUpdateComponent } from './update/vente-update.component';
 import { VenteDeleteDialogComponent } from './delete/vente-delete-dialog.component';
 import { VenteRoutingModule } from './route/vente-routing.module';
+import { TagModule } from 'primeng/tag';
+import { OrderListModule } from 'primeng/orderlist';
+import { PickListModule } from 'primeng/picklist';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { FieldsetModule } from 'primeng/fieldset';
+import { TabViewModule } from 'primeng/tabview';
+import { DividerModule } from 'primeng/divider';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
-  imports: [SharedModule, VenteRoutingModule],
+  imports: [
+    SharedModule,
+    VenteRoutingModule,
+    TagModule,
+    OrderListModule,
+    PickListModule,
+    InputNumberModule,
+    InputTextModule,
+    TabViewModule,
+    DividerModule,
+    SelectButtonModule,
+  ],
   declarations: [VenteComponent, VenteDetailComponent, VenteUpdateComponent, VenteDeleteDialogComponent],
 })
 export class VenteModule {}

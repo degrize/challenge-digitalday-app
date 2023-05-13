@@ -22,6 +22,17 @@ export class VenteUpdateComponent implements OnInit {
 
   clientsSharedCollection: IClient[] = [];
   articlesSharedCollection: IArticle[] = [];
+  targetArticle: IArticle[];
+
+  qteArticlesAcheter: Array<{ idArticle: number; qte: number | undefined }> = [
+    { idArticle: 1, qte: undefined },
+    { idArticle: 2, qte: undefined },
+  ];
+
+  creditStateOptions: any[] = [
+    { label: 'Non', value: false },
+    { label: 'Oui', value: true },
+  ];
 
   editForm: VenteFormGroup = this.venteFormService.createVenteFormGroup();
 
@@ -31,7 +42,9 @@ export class VenteUpdateComponent implements OnInit {
     protected clientService: ClientService,
     protected articleService: ArticleService,
     protected activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.targetArticle = [];
+  }
 
   compareClient = (o1: IClient | null, o2: IClient | null): boolean => this.clientService.compareClient(o1, o2);
 
@@ -46,6 +59,8 @@ export class VenteUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+
+    this.prepareQte();
   }
 
   previousState(): void {
@@ -60,6 +75,25 @@ export class VenteUpdateComponent implements OnInit {
     } else {
       this.subscribeToSaveResponse(this.venteService.create(vente));
     }
+  }
+
+  getSeverity(status: string): string {
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
+      default:
+        return '';
+    }
+  }
+
+  prepareQte(): void {
+    this.articlesSharedCollection.forEach(article => {
+      this.qteArticlesAcheter.push({ idArticle: article.id, qte: undefined });
+    });
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IVente>>): void {
