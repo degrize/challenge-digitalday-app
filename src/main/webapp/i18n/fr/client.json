@@ -4,15 +4,15 @@
       "home": {
         "title": "Clients",
         "refreshListLabel": "Actualiser la liste",
-        "createLabel": "Créer un nouveau Client",
-        "createOrEditLabel": "Créer ou éditer un Client",
-        "notFound": "Aucun Client trouvé"
+        "createLabel": "Créer un nouveau client",
+        "createOrEditLabel": "Créer ou éditer un client",
+        "notFound": "Aucun client trouvé"
       },
-      "created": "Un nouveau Client a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Client avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Client avec l'identifiant {{ param }} a été supprimé",
+      "created": "Un nouveau client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le client avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Client {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer le client {{ id }} ?"
       },
       "detail": {
         "title": "Client"

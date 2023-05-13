@@ -2,17 +2,17 @@
   "digitaldayApp": {
     "commander": {
       "home": {
-        "title": "Commanders",
+        "title": "Commander",
         "refreshListLabel": "Actualiser la liste",
-        "createLabel": "Créer un nouveau Commander",
-        "createOrEditLabel": "Créer ou éditer un Commander",
-        "notFound": "Aucun Commander trouvé"
+        "createLabel": "Créer une nouvelle commande",
+        "createOrEditLabel": "Créer ou éditer une commande",
+        "notFound": "Aucune commande trouvé"
       },
-      "created": "Un nouveau Commander a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Commander avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Commander avec l'identifiant {{ param }} a été supprimé",
+      "created": "une nouvelle commande a été créé avec l'identifiant {{ param }}",
+      "updated": "La commande avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La commande avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Commander {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer la commande {{ id }} ?"
       },
       "detail": {
         "title": "Commander"

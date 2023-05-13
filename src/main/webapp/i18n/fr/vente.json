@@ -4,15 +4,15 @@
       "home": {
         "title": "Ventes",
         "refreshListLabel": "Actualiser la liste",
-        "createLabel": "Créer un nouveau Vente",
-        "createOrEditLabel": "Créer ou éditer un Vente",
-        "notFound": "Aucun Vente trouvé"
+        "createLabel": "Créer une nouvelle Vente",
+        "createOrEditLabel": "Créer ou éditer une Vente",
+        "notFound": "Aucune Vente trouvée"
       },
-      "created": "Un nouveau Vente a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Vente avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Vente avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle Vente a été créé avec l'identifiant {{ param }}",
+      "updated": "La Vente avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Vente avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Vente {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer la Vente {{ id }} ?"
       },
       "detail": {
         "title": "Vente"

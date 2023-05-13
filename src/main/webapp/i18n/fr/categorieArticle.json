@@ -2,20 +2,20 @@
   "digitaldayApp": {
     "categorieArticle": {
       "home": {
-        "title": "CategorieArticles",
+        "title": "Catégorie articles",
         "refreshListLabel": "Actualiser la liste",
-        "createLabel": "Créer un nouveau Categorie Article",
-        "createOrEditLabel": "Créer ou éditer un Categorie Article",
-        "notFound": "Aucun Categorie Article trouvé"
+        "createLabel": "Créer une nouvelle catégorie article",
+        "createOrEditLabel": "Créer ou éditer une catégorie article",
+        "notFound": "Aucune Catégorie article trouvée"
       },
-      "created": "Un nouveau Categorie Article a été créé avec l'identifiant {{ param }}",
-      "updated": "Le Categorie Article avec l'identifiant {{ param }} a été mis à jour",
-      "deleted": "Le Categorie Article avec l'identifiant {{ param }} a été supprimé",
+      "created": "Une nouvelle catégorie article a été créé avec l'identifiant {{ param }}",
+      "updated": "La catégorie article avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La catégorie article avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Êtes-vous certain de vouloir supprimer le Categorie Article {{ id }} ?"
+        "question": "Êtes-vous certain de vouloir supprimer la catégorie article {{ id }} ?"
       },
       "detail": {
-        "title": "Categorie Article"
+        "title": "Catégorie article"
       },
       "id": "ID",
       "nom": "Nom",
