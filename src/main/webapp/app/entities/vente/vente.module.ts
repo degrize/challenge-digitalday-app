@@ -15,6 +15,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MessagesModule } from 'primeng/messages';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { MessagesModule } from 'primeng/messages';
     DividerModule,
     SelectButtonModule,
     MessagesModule,
+    ToggleButtonModule,
   ],
   declarations: [VenteComponent, VenteDetailComponent, VenteUpdateComponent, VenteDeleteDialogComponent],
 })

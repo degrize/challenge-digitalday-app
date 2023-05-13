@@ -39,6 +39,11 @@ export class ClientService {
     return this.http.get<IClient[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  meilleurClient(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IClient[]>(`${this.resourceUrl}/meilleur}`, { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

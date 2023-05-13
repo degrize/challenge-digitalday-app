@@ -37,4 +37,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("select client from Client client left join fetch client.quartier where client.id =:id")
     Optional<Client> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("select client from Client client left join fetch client.quartier ORDER BY client.fidelite desc ")
+    List<Client> meilleurClients();
 }

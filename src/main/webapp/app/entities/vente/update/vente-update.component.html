@@ -85,6 +85,15 @@
                   </div>
                 </ng-template>
               </p-pickList>
+              <br />
+              <p-toggleButton
+                (click)="validationAchat()"
+                onLabel="I confirm"
+                offLabel="I reject"
+                onIcon="pi pi-check"
+                offIcon="pi pi-times"
+                [style]="{ width: '10em' }"
+              ></p-toggleButton>
             </div>
           </p-tabPanel>
 
@@ -121,7 +130,8 @@
                 <p-messages severity="success">
                   <ng-template pTemplate>
                     <span>MONTANT :</span>
-                    <div class="ml-2">{{ 2000 * 2 }} FCFA</div>
+
+                    <div class="ml-2">{{ this.montantAchat }} FCFA</div>
                   </ng-template>
                 </p-messages>
               </div>

@@ -34,6 +34,8 @@ export class VenteUpdateComponent implements OnInit {
     { label: 'Oui', value: true },
   ];
 
+  montantAchat: number | null = 0;
+
   editForm: VenteFormGroup = this.venteFormService.createVenteFormGroup();
 
   constructor(
@@ -67,6 +69,13 @@ export class VenteUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  validationAchat(): void {
+    if (this.targetArticle[0]) {
+      const vente = this.venteFormService.getVente(this.editForm);
+      // @ts-ignore
+      this.montantAchat = this.targetArticle[0].prixVente * vente.qte;
+    }
+  }
   save(): void {
     this.isSaving = true;
     const vente = this.venteFormService.getVente(this.editForm);

@@ -1,6 +1,8 @@
 package com.challenge.digitaldayapp.service;
 
+import com.challenge.digitaldayapp.domain.Client;
 import com.challenge.digitaldayapp.service.dto.ClientDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,4 +65,6 @@ public interface ClientService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<Client> meilleurClients();
 }

@@ -1,5 +1,6 @@
 package com.challenge.digitaldayapp.web.rest;
 
+import com.challenge.digitaldayapp.domain.Client;
 import com.challenge.digitaldayapp.repository.ClientRepository;
 import com.challenge.digitaldayapp.service.ClientService;
 import com.challenge.digitaldayapp.service.dto.ClientDTO;
@@ -188,5 +189,12 @@ public class ClientResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/clients/meilleur")
+    public ResponseEntity<List<Client>> meilleur() {
+        log.debug("REST request to get Client");
+        List<Client> client = clientService.meilleurClients();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(client));
     }
 }

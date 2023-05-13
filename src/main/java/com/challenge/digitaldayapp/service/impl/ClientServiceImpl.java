@@ -5,6 +5,7 @@ import com.challenge.digitaldayapp.repository.ClientRepository;
 import com.challenge.digitaldayapp.service.ClientService;
 import com.challenge.digitaldayapp.service.dto.ClientDTO;
 import com.challenge.digitaldayapp.service.mapper.ClientMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,5 +85,12 @@ public class ClientServiceImpl implements ClientService {
     public void delete(Long id) {
         log.debug("Request to delete Client : {}", id);
         clientRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Client> meilleurClients() {
+        log.debug("Request Meilleur Client");
+
+        return clientRepository.meilleurClients();
     }
 }
